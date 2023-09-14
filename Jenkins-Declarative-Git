@@ -1,11 +1,19 @@
 pipeline{
      agent any
+
+           environment{
+             PATH = "/usr/share/maven/bin:$PATH"
+}
       stages{
         stage("Git Checkout"){
           steps{
-               git credentialsId:
+              git credentialsId: 'c6b0a07b-7388-4c7b-9402-4988c157d59c', url: 'https://github.com/Goodluck101/devops-automation.git'
            }
         }
-        stage()
+        stage("maven Build"){
+           steps{
+             sh "mvn clean package"
+}
+}
 }
 }
